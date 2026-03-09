@@ -3,7 +3,7 @@ package main;
 public class ListaEncadenada<T> {
     private NodoSimple<T> cabeza;
 
-    ListaEncadenada(){
+    public ListaEncadenada(){
         this.cabeza = null;
     }
 

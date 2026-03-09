@@ -4,7 +4,7 @@ public class NodoSimple<T> {
     private T objeto;
     private NodoSimple<T> siguiente;
 
-    NodoSimple(T objeto, NodoSimple<T> siguiente){
+    public NodoSimple(T objeto, NodoSimple<T> siguiente){
         this.objeto = objeto;
         this.siguiente = siguiente;
     }
