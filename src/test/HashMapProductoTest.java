@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
+import main.HashMapProducto;
+import main.ProductoTaco;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class HashMapProductoTest {
