@@ -1,6 +1,5 @@
 package main;
 
-import java.lang.Math;
 import java.time.LocalDate;
 
 public class ProductoTaco implements IFuncionHash{
@@ -43,4 +42,16 @@ public class ProductoTaco implements IFuncionHash{
         valor = (valor + fechaVenc.getDayOfMonth()) * fechaVenc.getMonthValue() - fechaVenc.getYear();
         return valor % 20;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
+
+    ProductoTaco other = (ProductoTaco) obj;
+
+    return tipo.equals(other.tipo) &&
+           fechaVenc.equals(other.fechaVenc) &&
+           nombre.equals(other.nombre);
+}
 }
