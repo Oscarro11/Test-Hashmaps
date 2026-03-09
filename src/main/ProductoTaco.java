@@ -43,6 +43,11 @@ public class ProductoTaco implements IFuncionHash{
         return valor % 20;
     }
 
+    @Override
+    public String toString(){
+        return nombre + " / " + tipo + " / " + fechaVenc;
+    }
+
     //This method should be replaced with one from a dedicated interface, that looks for similarities in 1 - 2 attributes between objects
     @Override
     public boolean equals(Object obj) {

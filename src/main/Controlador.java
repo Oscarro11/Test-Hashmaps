@@ -21,6 +21,10 @@ public class Controlador {
         return hashMap.buscarObjeto(new ProductoTaco(tipo, fechaVenc)) != null;
     }
 
+    public void mostrarHashMap(){
+        hashMap.mostrarTabla();
+    }
+
     public String buscarNombreProducto(String tipo, LocalDate fechaVenc){
         if (hashMap.buscarObjeto(new ProductoTaco(tipo, fechaVenc)) != null) {
             return hashMap.buscarObjeto(new ProductoTaco(tipo, fechaVenc)).getNombre();    

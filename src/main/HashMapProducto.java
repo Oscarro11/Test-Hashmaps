@@ -64,7 +64,7 @@ public class HashMapProducto<T extends IFuncionHash> {
             NodoSimple<T> actual = arregloListas[i].getCabeza();
 
             while (actual != null) {
-                System.out.println("   -> " + actual.getObjeto());
+                System.out.println("   -> " + actual.getObjeto().toString());
                 actual = actual.getSiguiente();
             }
         }

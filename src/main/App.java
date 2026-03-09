@@ -18,7 +18,8 @@ public class App {
                     1. Agregar ingrediente al inventario
                     2. Buscar ingrediente en inventario
                     3. Eliminar ingrediente en inventario
-                    4. Salir
+                    4. Mostrar estado de HashMap de inventario (dev)
+                    5. Salir
                     """);
             
             opcion = teclado.nextInt();
@@ -76,6 +77,12 @@ public class App {
                     break;
 
                 case 4:
+                    escribir("\n--------Estado interno del HashMap--------");
+                    controlador.mostrarHashMap();
+                    escribir("--------Estado interno del HashMap--------\n");
+                    break;
+
+                case 5:
                     escribir("Gracias por usar el programa, esperamos volver a verlo pronto");
                     continuar = false;
                     break;
