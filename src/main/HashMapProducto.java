@@ -17,17 +17,42 @@ public class HashMapProducto<T extends IFuncionHash> {
     public void guardarValor(T objeto) {
         int posicion = objeto.generarHash();
 
+        if (posicion < 0 || posicion >= TAMANIO) {
+            throw new IllegalArgumentException(
+                """
+                Este HashMap unicamente puede almacenar llaves de 0 a 19, y\
+                el valor hash del objeto " + objeto.toString() + " da un valor distinto al rango permitido
+                """);
+        }
+
         arregloListas[posicion].agregarNodo(objeto);
     }
    
-    public boolean buscarObjeto(T objeto) {
+    public T buscarObjeto(T objeto) {
         int posicion = objeto.generarHash();
+
+        if (posicion < 0 || posicion >= TAMANIO) {
+            throw new IllegalArgumentException(
+                """
+                Este HashMap unicamente puede almacenar llaves de 0 a 19, y\
+                el valor hash del objeto " + objeto.toString() + " da un valor distinto al rango permitido
+                """);
+        }
 
         return arregloListas[posicion].buscar(objeto);
     }
 
-     public boolean eliminarObjeto(T objeto) {
+    public boolean eliminarObjeto(T objeto) {
         int posicion = objeto.generarHash();
+
+        if (posicion < 0 || posicion >= TAMANIO) {
+            throw new IllegalArgumentException(
+                """
+                Este HashMap unicamente puede almacenar llaves de 0 a 19, y\
+                el valor hash del objeto " + objeto.toString() + " da un valor distinto al rango permitido
+                """);
+        }
+
 
         return arregloListas[posicion].eliminar(objeto);
     }

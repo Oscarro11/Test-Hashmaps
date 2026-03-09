@@ -28,7 +28,7 @@ class HashMapProductoTest {
 
         hashMap.guardarValor(producto);
 
-        boolean encontrado = hashMap.buscarObjeto(producto);
+        boolean encontrado = hashMap.buscarObjeto(producto) != null;
 
         assertTrue(encontrado);
     }
@@ -40,7 +40,7 @@ class HashMapProductoTest {
                 new ProductoTaco("Taco Pastor", "Carne",
                         LocalDate.of(2026, 3, 10));
 
-        boolean encontrado = hashMap.buscarObjeto(producto);
+        boolean encontrado = hashMap.buscarObjeto(producto) != null;
 
         assertFalse(encontrado);
     }
@@ -57,7 +57,7 @@ class HashMapProductoTest {
         boolean eliminado = hashMap.eliminarObjeto(producto);
 
         assertTrue(eliminado);
-        assertFalse(hashMap.buscarObjeto(producto));
+        assertFalse(hashMap.buscarObjeto(producto) != null);
     }
 
     @Test
@@ -75,7 +75,7 @@ class HashMapProductoTest {
         hashMap.guardarValor(p1);
         hashMap.guardarValor(p2);
 
-        assertTrue(hashMap.buscarObjeto(p1));
-        assertTrue(hashMap.buscarObjeto(p2));
+        assertTrue(hashMap.buscarObjeto(p1) != null);
+        assertTrue(hashMap.buscarObjeto(p2) != null);
     }
 }
