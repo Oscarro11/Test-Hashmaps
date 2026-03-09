@@ -43,6 +43,7 @@ public class ProductoTaco implements IFuncionHash{
         return valor % 20;
     }
 
+    //This method should be replaced with one from a dedicated interface, that looks for similarities in 1 - 2 attributes between objects
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -51,7 +52,6 @@ public class ProductoTaco implements IFuncionHash{
         ProductoTaco other = (ProductoTaco) obj;
 
         return tipo.equals(other.tipo) &&
-            fechaVenc.equals(other.fechaVenc) &&
-            nombre.equals(other.nombre);
+            fechaVenc.equals(other.fechaVenc);
     }
 }
