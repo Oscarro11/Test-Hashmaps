@@ -1,80 +1,64 @@
 package main; 
-import java.time.LocalDate;
+@SuppressWarnings("unchecked")
 
-public class HashMapProducto implements IFuncionHash {
+public class HashMapProducto<T extends IFuncionHash> {
 
-    private int valorHash;
-    private int[] arregloLlaves;
-    private ListaEncadenada<ProductoTaco>[] arregloListas;
+    private static final int TAMANIO = 20;
+    private ListaEncadenada<T>[] arregloListas;
 
-    @SuppressWarnings ("unchecked")
     public HashMapProducto() {
-        arregloLlaves = new int[20];
-        arregloListas = new ListaEncadenada[20];
+        arregloListas = new ListaEncadenada[TAMANIO];
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < TAMANIO; i++) {
             arregloListas[i] = new ListaEncadenada<>();
         }
     }
 
-    
-    @Override
-    public int generarHash(String tipo, LocalDate fechaVenc) {
+    public boolean guardarValor(T objeto) {
 
-        int sumaAscii = 0;
+        int posicion = objeto.generarHash();
 
-        for (int i = 0; i < tipo.length(); i++) {
-            int ascii = (int) tipo.charAt(i);
-            sumaAscii += Math.pow(ascii, i + 1);
+        if (posicion < 0 || posicion >= TAMANIO) {
+            return false; 
         }
 
-        int resultado = (sumaAscii + fechaVenc.getDayOfMonth());
-        resultado = resultado * fechaVenc.getMonthValue();
-        resultado = resultado - fechaVenc.getYear();
-
-        return Math.abs(resultado % 20);
-    }
-
-    public boolean guardarValor(ProductoTaco producto) {
-
-        int posicion = generarHash(producto.getTipo(), producto.getFechaVenc());
-
-        arregloListas[posicion].agregarNodo(producto);
-        arregloLlaves[posicion] = posicion;
-
+        arregloListas[posicion].agregarNodo(objeto);
         return true;
     }
 
-    
-    public ProductoTaco buscarObjeto(String tipo, LocalDate fechaVenc) {
+   
+    public boolean buscarObjeto(T objeto) {
 
-        int posicion = generarHash(tipo, fechaVenc);
+        int posicion = objeto.generarHash();
 
-        NodoSimple<ProductoTaco> actual = arregloListas[posicion].getCabeza();
-
-        while (actual != null) {
-            if (actual.objeto.getTipo().equals(tipo)
-                    && actual.objeto.getFechaVenc().equals(fechaVenc)) {
-                return actual.objeto;
-            }
-            actual = actual.siguiente;
+        if (posicion < 0 || posicion >= TAMANIO) {
+            return false;
         }
 
-        return null;
+        return arregloListas[posicion].buscar(objeto);
     }
 
-    public boolean eliminarObjeto(String tipo, LocalDate fechaVenc) {
-        int posicion = generarHash(tipo, fechaVenc);
+   
+    public boolean eliminarObjeto(T objeto) {
 
-        NodoSimple<ProductoTaco> actual = arregloListas[posicion].getCabeza();
+        int posicion = objeto.generarHash();
 
-        while (actual != null) {
-            if (actual.objeto.getTipo().equals(tipo)
-                    && actual.objeto.getFechaVenc().equals(fechaVenc)) {
-                return arregloListas[posicion].eliminar(actual.objeto);
-            }
-            actual = actual.siguiente;
+        if (posicion < 0 || posicion >= TAMANIO) {
+            return false;
         }
-        return false;
+
+        return arregloListas[posicion].eliminar(objeto);
+    }
+
+    public void mostrarTabla() {
+        for (int i = 0; i < TAMANIO; i++) {
+            System.out.println("Posición " + i + ":");
+            NodoSimple<T> actual = arregloListas[i].getCabeza();
+
+            while (actual != null) {
+                System.out.println("   -> " + actual.objeto);
+                actual = actual.siguiente;
+            }
+        }
     }
 }
