@@ -45,13 +45,13 @@ public class ProductoTaco implements IFuncionHash{
 
     @Override
     public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
 
-    ProductoTaco other = (ProductoTaco) obj;
+        ProductoTaco other = (ProductoTaco) obj;
 
-    return tipo.equals(other.tipo) &&
-           fechaVenc.equals(other.fechaVenc) &&
-           nombre.equals(other.nombre);
-}
+        return tipo.equals(other.tipo) &&
+            fechaVenc.equals(other.fechaVenc) &&
+            nombre.equals(other.nombre);
+    }
 }
