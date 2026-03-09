@@ -12,17 +12,17 @@ public class ListaEncadenada<T> {
         cabeza = nodoNuevo;
     }
 
-    public boolean buscar(T objeto) {
+    public T buscar(T objeto) {
         NodoSimple<T> actual = cabeza;
 
         while (actual != null) {
             if (actual.getObjeto().equals(objeto)) {
-                return true;
+                return actual.getObjeto();
             }
             actual = actual.getSiguiente();
         }
 
-        return false;
+        return null;
     }
 
     public boolean eliminar(T objeto) {
